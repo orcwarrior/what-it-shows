@@ -52,6 +52,13 @@ aside { border-left: 4px solid var(--accent); padding: 0.5rem 1rem; margin: 1rem
 <p>All of these came through the <strong>booking-v3</strong> form. Its hint prints <code>MM/DD/YYYY</code>, so guests type month first, and the form reads what arrived the tenant's way — day first. Same flipped day, wrong entry and wrong hint, so a different fix. The three tenants in this group — alder.physio, copper.studio, pale.harbour — are exactly the three running booking-v3. Every other tenant runs booking-v2, whose hint says <code>DD/MM/YYYY</code>, so their form reports belong to the parser cause.</p>
 <h2>Filed</h2>
 <p>One ticket per problem, with these counts, in the public GitHub repo linked from the kb README.</p>
+<h2>Where it ended</h2>
+<p>While the desk worked, engineering moved: <strong>#4471 closed on 05 October</strong>.</p>
+<ul>
+<li><code>parser</code> <strong>FIXED</strong> — <code>fix(dates): parse dd/mm for eu locales</code>: the parser now reads the tenant's day-first order, the bug that built this pile.</li>
+<li><code>hint</code> <strong>WON'T FIX</strong> — the booking-v3 form is retired, so the 33 reports end with the form that produced them.</li>
+</ul>
+<p>The two tickets the desk filed closed the engineering way: <code>parser</code> completed (the fix landed), <code>hint</code> as not planned (the form retired).</p>
 <aside><p>One merged ticket, two bugs. Splitting by tenant locale finds the second; matching on subject alone never will.</p></aside>
 <p class="stamp">desk ref <b>DR-2HRP-FPRZ</b></p>
 </main>

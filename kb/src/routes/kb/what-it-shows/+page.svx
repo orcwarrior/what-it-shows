@@ -41,6 +41,18 @@ booking-v2, whose hint says `DD/MM/YYYY`, so their form reports belong to the pa
 
 One ticket per problem, with these counts, in the public GitHub repo linked from the kb README.
 
+## Where it ended
+
+While the desk worked, engineering moved: **#4471 closed on 05 October**.
+
+- `parser` **FIXED** — `fix(dates): parse dd/mm for eu locales`: the parser now reads the tenant's
+  day-first order, the bug that built this pile.
+- `hint` **WON'T FIX** — the booking-v3 form is retired, so the 33 reports end with the form that
+  produced them.
+
+The two tickets the desk filed closed the engineering way: `parser` completed (the fix landed),
+`hint` as not planned (the form retired).
+
 <Callout>
 Fed only subject lines, every report matches one open ticket. Fed the tenant's locale and form,
 the pile sorts into two problems. Read the report, then merge it.
