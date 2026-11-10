@@ -1,0 +1,49 @@
+---
+layout: runbook
+title: 'what #4471 shows · two tickets inside'
+owner: S01E03 review
+status: accepted
+reviewed: 2026-11-10
+signature: 'v1.eyJzdWIiOiI3NTM1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQzMzMyNzQsImV4cCI6MTc5NDQxOTY3NH0.Xk95yIzFjz7oc1Bl8ERKlBNQxNP33aiDudW68dZFN3s'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+#4471 is marked known: one bug, one fix queued. Sorted by tenant locale and booking form instead of
+by subject line, the reports merged into it are **two separate problems**, and only one of them is
+the bug this ticket is about.
+
+## How the pile splits
+
+<CauseTable ticket={4471} />
+
+## Ticket 1 · `parser` · 379 reports
+
+The shared date parser reads every date month first, and every tenant on file writes dates day
+first (`locales.ts` keeps the directory), so invites the tenants sent come back flipped: 7 April runs on
+4 July. Eleven tenants, all three channels (app 204 · email 150 · form 25), April → October. This is the
+bug the desk already knows, and the reason #4471 exists. Filing note: `desk-notes.json` lets five
+reports the desk read as a one-day move stay where they are filed, as footnotes under this cause.
+
+## Ticket 2 · `hint` · 33 reports
+
+All of these came through the **booking-v3** form. Its hint prints `MM/DD/YYYY`, so guests type
+month first, and the form reads what arrived the tenant's way — day first. Same flipped day, wrong
+entry and wrong hint, so a different fix. The three tenants in this group — alder.physio,
+copper.studio, pale.harbour — are exactly the three running booking-v3. Every other tenant runs
+booking-v2, whose hint says `DD/MM/YYYY`, so their form reports belong to the parser cause.
+
+## Filed
+
+One ticket per problem, with these counts, in the public GitHub repo linked from the kb README.
+
+<Callout>
+Fed only subject lines, every report matches one open ticket. Fed the tenant's locale and form,
+the pile sorts into two problems. Read the report, then merge it.
+</Callout>
+
+<RenderStamp {signature} />
